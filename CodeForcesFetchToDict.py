@@ -1,5 +1,6 @@
 from time import sleep
 import requests
+no_of_users=500
 API_url="https://codeforces.com/api"
 rating_dict=requests.get(f"{API_url}/user.ratedList?activeOnly=true&includeRetired=false").json()
 if rating_dict["status"]!="OK":
@@ -8,9 +9,9 @@ if rating_dict["status"]!="OK":
 sleep(2)
 desired_result_dict={}
 rating_dict=rating_dict['result']
-print(rating_dict[500])
+print(rating_dict[no_of_users])
 
-for user in rating_dict[:501]:
+for user in rating_dict[:no_of_users+1]:
     desired_result_dict[user['handle']]={}
 
     for key in ('country','rating','organization','maxRating','registrationTimeSeconds'):
