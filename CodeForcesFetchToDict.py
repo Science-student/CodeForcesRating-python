@@ -5,7 +5,7 @@ rating_dict=requests.get(f"{API_url}/user.ratedList?activeOnly=true&includeRetir
 if rating_dict["status"]!="OK":
     print("seems like codeforces is blocking request")
     exit()
-
+sleep(2)
 desired_result_dict={}
 rating_dict=rating_dict['result']
 print(rating_dict[500])
