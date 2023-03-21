@@ -36,7 +36,7 @@ for user in rating_dict[:no_of_users+1]:
             for  key in ('rank','oldRating','newRating'):
                 desired_result_dict[user['handle']]['contest_list'][contest['contestId']][key]=contest[key]
         no_of_users-=1
-        print(f"ADDED {user['handle']},{no_of_users} more left estimated time is {datetime.timedelta(no_of_users*4)}")
+        print(f"ADDED {user['handle']},{no_of_users} more left estimated time is {datetime.timedelta(seconds=no_of_users*4)}")
         sleep(2)
 
     except:
