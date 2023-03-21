@@ -28,9 +28,11 @@ for user in rating_dict[:501]:
             for  key in ('rank','oldRating','newRating'):
                 desired_result_dict[user['handle']]['contest_list'][contest['contestId']][key]=contest[key]
         print(f"ADDED {user['handle']}")
+        sleep(2)
     except:
         with open("dict.txt","w") as f:
             f.write(str(desired_result_dict))
         print(user['handle'],"might be incorrect")
+        sleep(2)
 with open("dict.txt","w") as f:
     f.write(str(desired_result_dict))
