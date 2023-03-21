@@ -5,15 +5,17 @@ rating_dict=requests.get(f"{API_url}/user.ratedList?activeOnly=true&includeRetir
 if rating_dict["status"]!="OK":
     print("seems like codeforces is blocking request")
     exit()
-sleep (2)
+
 desired_result_dict={}
 rating_dict=rating_dict['result']
 print(rating_dict[500])
+
 for user in rating_dict[:501]:
     desired_result_dict[user['handle']]={}
 
     for key in ('country','rating','organization','maxRating','registrationTimeSeconds'):
         desired_result_dict[user['handle']][key]=user[key] if key in user else ''
+
     try:
         contest_list=requests.get(f"{API_url}/user.rating?handle={user['handle']}").json()
         if contest_list['status']!='OK':
@@ -21,18 +23,25 @@ for user in rating_dict[:501]:
             with open("dict.txt","w") as f:
                 f.write(str(desired_result_dict))
             exit()
+
         desired_result_dict[user['handle']]['contest_list']={}
         contest_list=contest_list['result']
+
         for contest in contest_list:
             desired_result_dict[user['handle']]['contest_list'][contest['contestId']]={}
+
             for  key in ('rank','oldRating','newRating'):
                 desired_result_dict[user['handle']]['contest_list'][contest['contestId']][key]=contest[key]
+
         print(f"ADDED {user['handle']}")
         sleep(2)
+
     except:
         with open("dict.txt","w") as f:
             f.write(str(desired_result_dict))
+
         print(user['handle'],"might be incorrect")
         sleep(2)
+
 with open("dict.txt","w") as f:
     f.write(str(desired_result_dict))
