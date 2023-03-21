@@ -1,5 +1,7 @@
 from time import sleep
 import requests
+import datetime
+
 no_of_users=int(input("Enter the number you want to get or leave blank for default:")) or 500
 API_url="https://codeforces.com/api"
 rating_dict=requests.get(f"{API_url}/user.ratedList?activeOnly=true&includeRetired=false").json()
@@ -33,8 +35,8 @@ for user in rating_dict[:no_of_users+1]:
 
             for  key in ('rank','oldRating','newRating'):
                 desired_result_dict[user['handle']]['contest_list'][contest['contestId']][key]=contest[key]
-
-        print(f"ADDED {user['handle']}")
+        no_of_users-=1
+        print(f"ADDED {user['handle']},{no_of_users} more left estimated time is {datetime.timedelta(no_of_users*4)}")
         sleep(2)
 
     except:
