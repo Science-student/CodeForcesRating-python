@@ -1,6 +1,7 @@
 # CodeForcesRating-python
 Requirements:
 `alive_progress`
+<br>
 Usage:
 
 1. run `CodeForcesFetchToDict.py`, this should create a `dict.txt`
