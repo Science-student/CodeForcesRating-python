@@ -1,8 +1,8 @@
 from time import sleep
-import requests
+import requests,sys
 from alive_progress import alive_bar
 
-no_of_users=int(input("Enter the number you want to get or leave blank for default:")) or 500
+no_of_users = int(sys.argv[1]) if len(sys.argv) > 1 else 500
 API_url="https://codeforces.com/api"
 rating_dict=requests.get(f"{API_url}/user.ratedList?activeOnly=true&includeRetired=false").json()
 if rating_dict["status"]!="OK":
