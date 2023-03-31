@@ -36,7 +36,7 @@ with alive_bar(no_of_users) as bar:
                 for  key in ('rank','oldRating','newRating'):
                     desired_result_dict[user['handle']]['contest_list'][contest['contestId']][key]=contest[key]
             no_of_users-=1
-            print(f"ADDED {user['handle']},{no_of_users} more left")
+            print(f"ADDED {user['handle']},{no_of_users+1} more left")
             sleep(2)
         except:
             with open("dict.txt","w") as f:
